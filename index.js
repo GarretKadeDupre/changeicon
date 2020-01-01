@@ -88,7 +88,7 @@ changeIcon.changeMetaData = async function (exe, metaData) {
   console.log('Compiling metadata script ...')
   await compileScript(path.join(__dirname, 'metadata.rc'))
   console.log(`Changing metadata of ${exe} ...`)
-  await changeMetaData('mongoose.exe', path.join(__dirname, 'metadata.res'))
+  await changeMetaData(exe, path.join(__dirname, 'metadata.res'))
   console.log('Metadata updated!')
 }
 
