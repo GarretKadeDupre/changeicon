@@ -1,0 +1,34 @@
+{
+  "name": "changeicon",
+  "version": "1.0.0",
+  "description": "Change the icon and metadata of executable files. Easy. Fast.",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "node dlResHack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "resource",
+    "hacker",
+    "icon",
+    "executable",
+    "metadata",
+    "version",
+    "info",
+    "change",
+    "edit",
+	"fast",
+	"easy"
+  ],
+  "author": "Garret Kade Dupre",
+  "license": "MIT",
+  "dependencies": {
+    "download-file": "^0.1.5",
+    "extract-zip": "^1.6.7",
+    "form-data": "^3.0.0",
+    "multipart-stream": "^2.0.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5",
+    "unzipper": "^0.10.5"
+  }
+}
