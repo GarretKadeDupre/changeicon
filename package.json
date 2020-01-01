@@ -1,7 +1,7 @@
 {
   "name": "changeicon",
-  "version": "1.0.0",
-  "description": "Change the icon and metadata of executable files. Easy. Fast.",
+  "version": "1.0.1",
+  "description": "Change the icon and metadata of executable files. Fast. Easy.",
   "main": "index.js",
   "scripts": {
     "postinstall": "node dlResHack",
