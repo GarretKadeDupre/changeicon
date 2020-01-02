@@ -9,17 +9,42 @@ Change the icon and metadata of executable files. Fast. Easy.
  
 ```javascript
 const changeIcon = require('changeicon');
+```
+
+**change icon**
+
+```javascript
+(async () => { await changeIcon('program.exe', 'picture.png'); })();
+```
+
+**change metadata**
+
+```javascript
+(async () => {
+  await changeIcon.changeMetaData('program.exe', {
+    CompanyName: 'Legit Tax Haven, LLC',
+    FileDescription: 'An innocent file that will not harm your computer. Double-click to read more.',
+    FileVersion: '1.3.3.7',
+    LegalCopyright: 'Copyright 2021, all my rights are belong to me.',
+    OriginalFilename: 'virus.exe',
+    ProductName: 'Not A Virus',
+    ProductVersion: '1.2.3.4'
+  });
+})();
+```
+
+**both**
+
+```javascript
 (async () => {
   await changeIcon('program.exe', 'picture.png');
-  let myMetaData = {
-    CompanyName: 'Offshore Tax Shelter LLC',
-    FileDescription: 'A pretty cool file. Does some great stuff.',
+  await changeIcon.changeMetaData('program.exe', {
+    CompanyName: 'Legit Tax Haven, LLC',
+    FileDescription: 'An innocent file that will not harm your computer. Double-click to read more.',
     FileVersion: '1.3.3.7',
-    LegalCopyright: 'Copyright 2012, All my rights are belong to me.',
-    OriginalFilename: 'notavirus.exe',
-    ProductName: 'Second Best Program Ever',
+    LegalCopyright: 'Copyright 2021, all my rights are belong to me.',
+    OriginalFilename: 'virus.exe',
+    ProductName: 'Not A Virus',
     ProductVersion: '1.2.3.4'
-  };
-  await changeIcon.changeMetaData('program.exe', myMetaData);
-})()
-```
+  });
+})();

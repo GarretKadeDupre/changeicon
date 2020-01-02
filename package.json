@@ -1,6 +1,6 @@
 {
   "name": "changeicon",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Change the icon and metadata of executable files. Fast. Easy.",
   "main": "index.js",
   "scripts": {
