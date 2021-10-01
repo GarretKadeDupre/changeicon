@@ -14,24 +14,24 @@ module.exports = changeIcon
  * If an ICO image is supplied, it must be an icon group. 
  * If a PNG or JPG image is supplied, it will be converted to an icon group via https://icoconvert.com.
  */
-async function changeIcon(exe, img) {
+async function changeIcon(exe, img, verbose = true) {
   if (img.endsWith('.ico')) {
     let icon = img
-    console.log(`Changing icon of ${exe} to ${icon} ...`)
+    verbose && console.log(`Changing icon of ${exe} to ${icon} ...`)
     return new Promise((resolve, reject) => {
       let args = `-o "${exe}" -s "${exe}" -a addoverwrite -r "${icon}" -m ICONGROUP,AAAAAA,`
       // The icon name within the executable is named "AAAAAA" to ensure it is alphabetically first.
       // Windows Explorer displays the alphabetically first icon.
       run(`"${path.join(__dirname, 'resource_hacker', 'ResourceHacker.exe')}" ${args}`)
-      console.log('Icon successfully changed!')
+      verbose && console.log('Icon successfully changed!')
       resolve()
     })
   } else {
     let ext = img.match(/\.[0-9a-z]+$/i)[0]
-    console.log(`${img} is not an icon.  Attempting to convert it with icoconvert.com ...`)
+    verbose && console.log(`${img} is not an icon.  Attempting to convert it with icoconvert.com ...`)
     await img2ico(img)
     let icon = img.replace(ext, '.ico')
-    console.log(`${img} converted to ${icon}!`)
+    verbose && console.log(`${img} converted to ${icon}!`)
     await changeIcon(exe, icon)
   }
 }
@@ -81,15 +81,15 @@ async function img2ico(img) {
   * ProductVersion: string
   * }} metaData - The desired metadata. FileVersion and ProductVersion must be formatted like 1.2.3.4
  */
-changeIcon.changeMetaData = async function (exe, metaData) {
-  console.log('Generating metadata script from the following data:')
-  console.log(metaData)
+changeIcon.changeMetaData = async function (exe, metaData, verbose = true) {
+  verbose && console.log('Generating metadata script from the following data:')
+  verbose && console.log(metaData)
   await writeScript(metaData)
-  console.log('Compiling metadata script ...')
+  verbose && console.log('Compiling metadata script ...')
   await compileScript(path.join(__dirname, 'metadata.rc'))
-  console.log(`Changing metadata of ${exe} ...`)
+  verbose && console.log(`Changing metadata of ${exe} ...`)
   await changeMetaData(exe, path.join(__dirname, 'metadata.res'))
-  console.log('Metadata updated!')
+  verbose && console.log('Metadata updated!')
 }
 
 async function writeScript(metaData) {
